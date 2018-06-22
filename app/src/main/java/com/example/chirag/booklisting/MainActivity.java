@@ -35,6 +35,18 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         mAdapter = new DataAdapter(this, new ArrayList<BookInfo>());
         bookListView.setAdapter(mAdapter);
 
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BookInfo link = (BookInfo) mAdapter.getItem(position);
+
+                Uri linkUri = Uri.parse(link.getmBookUrl());
+
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, linkUri);
+                startActivity(webIntent);
+            }
+        });
+
         ConnectivityManager cm =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 

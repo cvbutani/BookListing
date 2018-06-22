@@ -127,11 +127,11 @@ public final class BookQuery {
                 String bookName = volumeInfo.getString("title");
                 String bookAuthor = volumeInfo.getString("authors");
                 String bookPublisher = volumeInfo.getString("publisher");
-
+                String bookLink = volumeInfo.getString("infoLink");
 //                JSONObject price = priceElements.getJSONObject("listPrice");
 
 
-                bookInfos.add(new BookInfo(bookName, bookAuthor, bookPublisher, 4.0, 25));
+                bookInfos.add(new BookInfo(bookName, bookAuthor, bookPublisher, bookLink, 4.0, 25));
             }
 
         } catch (JSONException e) {

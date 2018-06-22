@@ -6,13 +6,15 @@ public class BookInfo {
     private String mBookPublisher;
     private double mBookRating;
     private double mBookPrice;
+    private String mBookUrl;
 
-    public BookInfo(String mBookName, String mBookAuthor, String mBookPublisher, double mBookRating, double mBookPrice) {
+    public BookInfo(String mBookName, String mBookAuthor, String mBookPublisher, String url, double mBookRating, double mBookPrice) {
         this.mBookName = mBookName;
         this.mBookAuthor = mBookAuthor;
         this.mBookPublisher = mBookPublisher;
         this.mBookRating = mBookRating;
         this.mBookPrice = mBookPrice;
+        this. mBookUrl = url;
     }
 
     public String getmBookName() {
@@ -33,5 +35,9 @@ public class BookInfo {
 
     public double getmBookPrice() {
         return mBookPrice;
+    }
+
+    public String getmBookUrl() {
+        return mBookUrl;
     }
 }
