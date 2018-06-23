@@ -5,16 +5,18 @@ public class BookInfo {
     private String mBookAuthor;
     private String mBookPublisher;
     private double mBookRating;
-    private double mBookPrice;
+    private String mBookPrice;
     private String mBookUrl;
+    private String mBookImage;
 
-    public BookInfo(String mBookName, String mBookAuthor, String mBookPublisher, String url, double mBookRating, double mBookPrice) {
+    public BookInfo(String mBookName, String mBookAuthor, String mBookPublisher, String url, double mBookRating, String mBookPrice, String mBookImage) {
         this.mBookName = mBookName;
         this.mBookAuthor = mBookAuthor;
         this.mBookPublisher = mBookPublisher;
         this.mBookRating = mBookRating;
         this.mBookPrice = mBookPrice;
-        this. mBookUrl = url;
+        this.mBookUrl = url;
+        this.mBookImage = mBookImage;
     }
 
     public String getmBookName() {
@@ -33,11 +35,15 @@ public class BookInfo {
         return mBookRating;
     }
 
-    public double getmBookPrice() {
+    public String getmBookPrice() {
         return mBookPrice;
     }
 
     public String getmBookUrl() {
         return mBookUrl;
+    }
+
+    public String getmBookImage() {
+        return mBookImage;
     }
 }

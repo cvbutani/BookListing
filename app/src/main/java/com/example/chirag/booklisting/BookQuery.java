@@ -23,7 +23,7 @@ import java.util.List;
 
 public final class BookQuery {
 
-    public static final String LOG_TAG = BookQuery.class.getName();
+    private static final String LOG_TAG = BookQuery.class.getName();
 
     public BookQuery() {
     }
@@ -108,7 +108,7 @@ public final class BookQuery {
         return output.toString();
     }
 
-    public static List<BookInfo> extractBookInfo(String bookJSON) {
+    private static List<BookInfo> extractBookInfo(String bookJSON) {
         if (TextUtils.isEmpty(bookJSON)) {
             return null;
         }
@@ -128,40 +128,26 @@ public final class BookQuery {
 
                     JSONObject elementsInItem = itemsArray.getJSONObject(i);
 
-                    String bookTitle = JSONParseCheck(elementsInItem, "title");
-                    String bookPublisher = JSONParseCheck(elementsInItem, "publisher");
-                    String bookLink = JSONParseCheck(elementsInItem, "infoLink");
-                    String bookAuthors = JSONParseCheck(elementsInItem, "authors");
+                    String bookTitle = bookInfo(elementsInItem, "title");
+                    String bookPublisher = bookInfo(elementsInItem, "publisher");
+                    String bookLink = bookInfo(elementsInItem, "infoLink");
+                    String bookAuthors = bookInfo(elementsInItem, "authors");
 
-                    JSONObject priceElements;
-                    JSONObject price;
-                    double bookPrice = 0;
-                    if (elementsInItem.has("saleInfo")) {
-                        priceElements = elementsInItem.getJSONObject("saleInfo");
-                        if (priceElements.has("retailPrice")) {
-                            price = priceElements.getJSONObject("retailPrice");
-                            if (price.has("amount")) {
-                                bookPrice = price.getDouble("amount");
-                            } else {
-                                bookPrice = 0;
-                            }
-                        } else {
-                            bookPrice = 0;
-                        }
-                    }
+                    String bookPrice = String.valueOf(bookData(elementsInItem, "saleInfo", "retailPrice", "amount"));
+                    String url = bookData(elementsInItem, "volumeInfo", "imageLinks", "smallThumbnail");
+
                     double rating;
-
                     JSONObject ratingObject = null;
                     if (elementsInItem.has("volumeInfo")) {
                         ratingObject = elementsInItem.getJSONObject("volumeInfo");
                     }
-                    if (ratingObject != null && ratingObject.has("averageRating")){
+                    if (ratingObject != null && ratingObject.has("averageRating")) {
                         rating = ratingObject.getDouble("averageRating");
                     } else {
                         rating = 0.0;
                     }
-                    Log.i(LOG_TAG, "Rating: " + rating);
-                    bookInfos.add(new BookInfo(bookTitle, bookAuthors, bookPublisher, bookLink, rating, bookPrice));
+
+                    bookInfos.add(new BookInfo(bookTitle, bookAuthors, bookPublisher, bookLink, rating, bookPrice, url));
                 }
             }
 
@@ -171,7 +157,7 @@ public final class BookQuery {
         return bookInfos;
     }
 
-    private static String JSONParseCheck(JSONObject object, String key) throws JSONException {
+    private static String bookInfo(JSONObject object, String key) throws JSONException {
         JSONObject jsonObject = null;
         StringBuilder arrayParameters = new StringBuilder();
         String value = "";
@@ -196,6 +182,24 @@ public final class BookQuery {
         if (jsonObject != null) {
             value = jsonObject.getString(key);
             return value;
+        }
+        return value;
+    }
+
+    private static String bookData(JSONObject object1, String values, String key1, String key2) throws JSONException {
+        JSONObject jsonObjectOut;
+        JSONObject jsonObjectIn;
+        String value = "Free";
+        if (object1.has(values)) {
+            jsonObjectOut = object1.getJSONObject(values);
+            if (jsonObjectOut != null && jsonObjectOut.has(key1)) {
+                jsonObjectIn = jsonObjectOut.getJSONObject(key1);
+                if (jsonObjectIn != null && jsonObjectIn.has(key2)) {
+                    value = jsonObjectIn.getString(key2);
+                } else {
+                    value = "Free";
+                }
+            }
         }
         return value;
     }
