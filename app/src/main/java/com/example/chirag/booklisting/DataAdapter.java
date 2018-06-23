@@ -43,8 +43,11 @@ public class DataAdapter extends ArrayAdapter {
 
         TextView bookPrice = infoDisplay.findViewById(R.id.book_price);
 
-        bookPrice.setText(String.valueOf(book.getmBookPrice()));
-
+        if (book.getmBookPrice() == 0) {
+            bookPrice.setText("Not For Sale");
+        } else {
+            bookPrice.setText(String.valueOf(book.getmBookPrice()));
+        }
         return infoDisplay;
     }
 }

@@ -117,51 +117,40 @@ public final class BookQuery {
 
         try {
             JSONObject jsonObject = new JSONObject(bookJSON);
-            JSONArray itemsArray = jsonObject.getJSONArray("items");
 
-            for (int i = 0; i < itemsArray.length(); i++) {
+            JSONArray itemsArray = null;
+            if (jsonObject.has("items")) {
+                itemsArray = jsonObject.getJSONArray("items");
+            }
 
-                JSONObject elementsInItem = itemsArray.getJSONObject(i);
+            if (itemsArray != null) {
+                for (int i = 0; i < itemsArray.length(); i++) {
 
-                JSONObject volumeInfo = null;
-                if (elementsInItem.has("volumeInfo")){
-                    volumeInfo = elementsInItem.getJSONObject("volumeInfo");
-                }
+                    JSONObject elementsInItem = itemsArray.getJSONObject(i);
 
-                String bookTitle = JSONParseCheck(elementsInItem, "volumeInfo", "title");
-                String bookPublisher = JSONParseCheck(elementsInItem, "volumeInfo", "publisher");
-                String bookLink = JSONParseCheck(elementsInItem, "volumeInfo", "infoLink");
+                    String bookTitle = JSONParseCheck(elementsInItem, "title");
+                    String bookPublisher = JSONParseCheck(elementsInItem, "publisher");
+                    String bookLink = JSONParseCheck(elementsInItem, "infoLink");
+                    String bookAuthors = JSONParseCheck(elementsInItem, "authors");
 
-                JSONArray bookAuthor = volumeInfo.getJSONArray("authors");
-                StringBuilder author = new StringBuilder();
-                String allAuthors;
-                author.append(bookAuthor.get(0));
-                for (int j = 1; j < bookAuthor.length(); j++) {
-                    author.append(", ");
-                    author.append(bookAuthor.get(j));
-                }
-                allAuthors = author.toString();
-
-                JSONObject priceElements = null;
-                JSONObject price = null;
-                double bookPrice = 0;
-                if (elementsInItem.has("saleInfo")) {
-                    priceElements = elementsInItem.getJSONObject("saleInfo");
-                    if (priceElements.has("retailPrice")) {
-                        price = priceElements.getJSONObject("retailPrice");
-                        if (price.has("amount")){
-                            bookPrice = price.getDouble("amount");
+                    JSONObject priceElements;
+                    JSONObject price;
+                    double bookPrice = 0;
+                    if (elementsInItem.has("saleInfo")) {
+                        priceElements = elementsInItem.getJSONObject("saleInfo");
+                        if (priceElements.has("retailPrice")) {
+                            price = priceElements.getJSONObject("retailPrice");
+                            if (price.has("amount")) {
+                                bookPrice = price.getDouble("amount");
+                            } else {
+                                bookPrice = 0;
+                            }
                         } else {
                             bookPrice = 0;
                         }
-                    } else {
-                        bookPrice = 0;
                     }
+                    bookInfos.add(new BookInfo(bookTitle, bookAuthors, bookPublisher, bookLink, 4.0, bookPrice));
                 }
-
-                Log.i(LOG_TAG, "Amount: " + bookPrice);
-
-                bookInfos.add(new BookInfo(bookTitle, allAuthors, bookPublisher, bookLink, 4.0, bookPrice));
             }
 
         } catch (JSONException e) {
@@ -170,14 +159,32 @@ public final class BookQuery {
         return bookInfos;
     }
 
-    private static String JSONParseCheck(JSONObject object, String item, String key) throws JSONException {
+    private static String JSONParseCheck(JSONObject object, String key) throws JSONException {
         JSONObject jsonObject = null;
+        StringBuilder arrayParameters = new StringBuilder();
         String value = "";
-        if (object.has(item)) {
-            jsonObject = object.getJSONObject(item);
+        JSONArray valueArray = null;
+        if (object.has("volumeInfo")) {
+            jsonObject = object.getJSONObject("volumeInfo");
+        }
+        if (jsonObject != null && key.equals("authors")) {
+            if (jsonObject.has(key)) {
+                valueArray = jsonObject.getJSONArray(key);
+            }
+            if (valueArray != null) {
+                arrayParameters.append(valueArray.get(0));
+                for (int i = 1; i < valueArray.length(); i++) {
+                    arrayParameters.append(", ");
+                    arrayParameters.append(valueArray.get(i));
+                }
+            }
+            value = arrayParameters.toString();
+            Log.i(LOG_TAG, "Authors: " + value);
+            return value;
         }
         if (jsonObject != null) {
             value = jsonObject.getString(key);
+            return value;
         }
         return value;
     }
