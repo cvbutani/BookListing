@@ -1,5 +1,6 @@
 package com.example.chirag.booklisting;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -27,6 +28,7 @@ public class DataAdapter extends ArrayAdapter {
         super(context, 0, objects);
     }
 
+    @SuppressLint("SetTextI18n")
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -57,7 +59,14 @@ public class DataAdapter extends ArrayAdapter {
                 bookRating.setRating((float) book.getmBookRating());
             }
 
-            bookPrice.setText(book.getmBookPrice());
+            String filler;
+            if (book.getmBookPrice().equals("0")) {
+                filler = "Free";
+            } else {
+                filler = "CAD $" + book.getmBookPrice();
+            }
+
+            bookPrice.setText(filler);
 
             new ImageURL(bookImage).execute(book.getmBookImage());
         }

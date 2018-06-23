@@ -4,14 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="16dp">
+    android:paddingBottom="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="8dp">
 
     <ImageView
         android:id="@+id/book_image"
         android:layout_width="70dp"
         android:layout_height="100dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:src="@drawable/content" />
+        tools:src="@drawable/content" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -24,13 +28,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:fontFamily="sans-serif-medium"
             android:maxLines="2"
-
             android:textAllCaps="true"
             android:textColor="@color/primaryText"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="Android" />
 
         <RatingBar
             android:id="@+id/book_rating"
@@ -47,9 +50,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/secondaryText"
                 android:ellipsize="end"
                 android:text="Author:"
+                android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
             <TextView
@@ -59,8 +62,10 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/secondaryText"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Chirag Butani" />
 
         </LinearLayout>
 
@@ -72,9 +77,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/secondaryText"
                 android:ellipsize="end"
                 android:text="Publisher:"
+                android:textColor="@color/secondaryText"
                 android:textSize="16sp" />
 
             <TextView
@@ -84,9 +89,10 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginStart="4dp"
                 android:ellipsize="end"
+                android:maxLines="1"
                 android:textColor="@color/secondaryText"
-                android:text="Vikas Publishing House"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Vikas Publishing House" />
 
         </LinearLayout>
 
@@ -96,8 +102,12 @@
         android:id="@+id/book_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="5"
-        android:textSize="16sp"/>
+        android:layout_marginLeft="16dp"
+
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Free" />
 
 
 </LinearLayout>

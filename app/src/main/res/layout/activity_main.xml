@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:divider="@color/dividerColor"
-    android:dividerHeight="1dp"
+    android:dividerHeight="0.5dp"
     android:drawSelectorOnTop="true"
     tools:context="com.example.chirag.booklisting.MainActivity" />
