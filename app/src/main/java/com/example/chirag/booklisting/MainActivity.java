@@ -2,15 +2,21 @@ package com.example.chirag.booklisting;
 
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+
 import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import android.view.View;
+
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -21,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     private DataAdapter mAdapter;
 
-    private static final int EARTHQUAKE_LOADER_ID = 1;
+    private static final int BOOK_LOADER_ID = 1;
 
     private static final String BOOK_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=20";
 
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         if (isConnected) {
             LoaderManager loadManager = getLoaderManager();
-            loadManager.initLoader(EARTHQUAKE_LOADER_ID,null,this);
+            loadManager.initLoader(BOOK_LOADER_ID,null,this);
         }
     }
 
