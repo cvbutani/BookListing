@@ -41,8 +41,9 @@ public class DataAdapter extends ArrayAdapter {
         RatingBar bookRating = infoDisplay.findViewById(R.id.book_rating);
         bookRating.setRating((float) book.getmBookRating());
 
-//        TextView bookPrice = infoDisplay.findViewById(R.id.book_price);
-//        bookPrice.setText((int) book.getmBookPrice());
+        TextView bookPrice = infoDisplay.findViewById(R.id.book_price);
+
+        bookPrice.setText(String.valueOf(book.getmBookPrice()));
 
         return infoDisplay;
     }
