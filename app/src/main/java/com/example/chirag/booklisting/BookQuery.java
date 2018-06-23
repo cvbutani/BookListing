@@ -149,7 +149,19 @@ public final class BookQuery {
                             bookPrice = 0;
                         }
                     }
-                    bookInfos.add(new BookInfo(bookTitle, bookAuthors, bookPublisher, bookLink, 4.0, bookPrice));
+                    double rating;
+
+                    JSONObject ratingObject = null;
+                    if (elementsInItem.has("volumeInfo")) {
+                        ratingObject = elementsInItem.getJSONObject("volumeInfo");
+                    }
+                    if (ratingObject != null && ratingObject.has("averageRating")){
+                        rating = ratingObject.getDouble("averageRating");
+                    } else {
+                        rating = 0.0;
+                    }
+                    Log.i(LOG_TAG, "Rating: " + rating);
+                    bookInfos.add(new BookInfo(bookTitle, bookAuthors, bookPublisher, bookLink, rating, bookPrice));
                 }
             }
 
@@ -179,7 +191,6 @@ public final class BookQuery {
                 }
             }
             value = arrayParameters.toString();
-            Log.i(LOG_TAG, "Authors: " + value);
             return value;
         }
         if (jsonObject != null) {
