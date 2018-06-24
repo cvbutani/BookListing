@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Book Listing</string>
+    <string name="search_hint">Search..</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_default">android</string>
+    <string name="settings_key">searchType</string>
+    <string name="settings_label">Search</string>
+    <string name="settings_menu_item">Settings</string>
+    <string name="settings_min_key" translatable="false">min_value</string>
+    <string name="settings_min_default" translatable="false">android</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_books">No Books Found</string>
 </resources>

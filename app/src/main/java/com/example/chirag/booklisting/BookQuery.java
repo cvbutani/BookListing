@@ -133,7 +133,7 @@ public final class BookQuery {
                     String bookLink = bookInfo(elementsInItem, JSONParseKey.JSON_INFO_LINK_KEY);
                     String bookAuthors = bookInfo(elementsInItem, JSONParseKey.JSON_AUTHOR_KEY);
 
-                    String bookPrice = String.valueOf(bookData(elementsInItem, JSONParseKey.JSON_SALE_INFO_KEY,JSONParseKey.JSON_RETAIL_PRICE_KEY, JSONParseKey.JSON_AMOUNT_KEY));
+                    String bookPrice = String.valueOf(bookData(elementsInItem, JSONParseKey.JSON_SALE_INFO_KEY, JSONParseKey.JSON_RETAIL_PRICE_KEY, JSONParseKey.JSON_AMOUNT_KEY));
                     String url = bookData(elementsInItem, JSONParseKey.JSON_VOLUME_INFO_KEY, JSONParseKey.JSON_IMAGE_LINK_KEY, JSONParseKey.JSON_SMALL_THUMBNAIL_KEY);
 
                     double rating;

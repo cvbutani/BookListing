@@ -19,6 +19,7 @@ public class ImageURL extends AsyncTask<String, Void, Bitmap> {
     @SuppressLint("StaticFieldLeak")
     private ImageView imageView;
     private Bitmap bitmap;
+    private InputStream inputStream;
 
     public ImageURL(ImageView imageView) {
         this.imageView = imageView;
@@ -29,13 +30,20 @@ public class ImageURL extends AsyncTask<String, Void, Bitmap> {
         String url = strings[0];
         try {
             URL bookUrl = new URL(url);
-            InputStream inputStream = bookUrl.openStream();
+            inputStream = bookUrl.openStream();
             bitmap = BitmapFactory.decodeStream(inputStream);
-            inputStream.close();
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return bitmap;
     }

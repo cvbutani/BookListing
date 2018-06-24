@@ -12,7 +12,10 @@ The goal is to design and create the structure of a Book Listing app which would
 - Using an AsyncTask
 - Loader Manager
 - Bitmap
+- Shared Preference
+- Preference Fragment
 
 #### UX DESIGN
 
-<img src="https://raw.githubusercontent.com/cvbutani/BookListing/master/UXDesign/ux1.png" width="200"/> <img src="https://raw.githubusercontent.com/cvbutani/TourGuide/BookListing/UXDesign/ux2.png" width="200"/> 
+<img src="https://raw.githubusercontent.com/cvbutani/BookListing/master/UXDesign/ux1.png" width="200"/> <img src="https://raw.githubusercontent.com/cvbutani/BookListing/master/UXDesign/ux2.png" width="200"/> 
+<img src="https://raw.githubusercontent.com/cvbutani/BookListing/master/UXDesign/ux3.png" width="200"/> <img src="https://raw.githubusercontent.com/cvbutani/BookListing/master/UXDesign/ux4.png" width="200"/> 
