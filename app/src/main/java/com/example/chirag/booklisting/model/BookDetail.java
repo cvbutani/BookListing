@@ -6,12 +6,6 @@ import com.google.gson.annotations.SerializedName;
 
 public class BookDetail {
 
-    @SerializedName("kind")
-    @Expose
-    private String kind;
-    @SerializedName("totalItems")
-    @Expose
-    private long totalItems;
     @SerializedName("items")
     @Expose
     private List<Item> items = null;
@@ -23,33 +17,8 @@ public class BookDetail {
     public BookDetail() {
     }
 
-    /**
-     *
-     * @param items
-     * @param totalItems
-     * @param kind
-     */
-    public BookDetail(String kind, long totalItems, List<Item> items) {
-        super();
-        this.kind = kind;
-        this.totalItems = totalItems;
+    public BookDetail(List<Item> items) {
         this.items = items;
-    }
-
-    public String getKind() {
-        return kind;
-    }
-
-    public void setKind(String kind) {
-        this.kind = kind;
-    }
-
-    public long getTotalItems() {
-        return totalItems;
-    }
-
-    public void setTotalItems(long totalItems) {
-        this.totalItems = totalItems;
     }
 
     public List<Item> getItems() {
@@ -59,5 +28,4 @@ public class BookDetail {
     public void setItems(List<Item> items) {
         this.items = items;
     }
-
 }
