@@ -17,7 +17,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class DataAdapter extends ArrayAdapter {
+public class
+DataAdapter extends ArrayAdapter {
 
     public DataAdapter(@NonNull Context context, @NonNull ArrayList<BookInfo> objects) {
         super(context, 0, objects);
