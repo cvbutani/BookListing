@@ -71,21 +71,21 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             }
         });
 
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
-        if (isConnected) {
-            LoaderManager loadManager = getLoaderManager();
-            loadManager.initLoader(BOOK_LOADER_ID, null, this);
-        } else {
-            mProgressBar.setVisibility(View.GONE);
-            mEmptyTextView.setText(R.string.no_internet);
-        }
+//        ConnectivityManager cm =
+//                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//
+//        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+//
+//        boolean isConnected = activeNetwork != null &&
+//                activeNetwork.isConnectedOrConnecting();
+//
+//        if (isConnected) {
+//            LoaderManager loadManager = getLoaderManager();
+//            loadManager.initLoader(BOOK_LOADER_ID, null, this);
+//        } else {
+//            mProgressBar.setVisibility(View.GONE);
+//            mEmptyTextView.setText(R.string.no_internet);
+//        }
 
         MainPresenter presenter = new MainPresenter();
         presenter.attachView(this);
@@ -141,8 +141,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
 
     @Override
-    public void onResult(List<BookDetail> data) {
-        Log.i("GOT SOMETHING", "LET'S SEE" + data.get(0));
+    public void onResult(BookDetail data) {
+//        Log.i("GOT SOMETHING", "LET'S SEE" + data.getItems().get(0).getVolumeInfo().getTitle());
+
     }
 
     @Override

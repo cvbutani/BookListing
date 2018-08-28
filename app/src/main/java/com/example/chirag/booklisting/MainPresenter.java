@@ -23,7 +23,7 @@ public class MainPresenter implements MainContract.Presenter {
     public void getData() {
         mDataManager.getNewBatchOfData(new onTaskCompletion() {
             @Override
-            public void onSuccess(List<BookDetail> data) {
+            public void onSuccess(BookDetail data) {
                 mCallback.onResult(data);
             }
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class MainContract {
     interface View {
-        void onResult(List<BookDetail> data);
+        void onResult(BookDetail data);
 
         void onError(String errorMessage);
     }

@@ -16,5 +16,5 @@ import retrofit2.http.Query;
 public interface GetDataService {
 
     @GET("volumes?q=android")
-    Call<List<BookDetail>> getAllInformation();
+    Call<BookDetail> getAllInformation();
 }

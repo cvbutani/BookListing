@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Chirag on 27/08/18.
  */
 public interface onTaskCompletion {
-    void onSuccess(List<BookDetail> data);
+    void onSuccess(BookDetail data);
 
     void onError(String errorMessage);
 }

@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName;
 public class BookDetail {
 
     @SerializedName("items")
-    @Expose
     private List<Item> items = null;
 
     /**

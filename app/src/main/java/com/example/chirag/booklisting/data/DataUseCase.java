@@ -23,15 +23,15 @@ public class DataUseCase {
     void getData(final onTaskCompletion callback) {
         GetDataService service= RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
-        Call<List<BookDetail>>  call = service.getAllInformation();
-        call.enqueue(new Callback<List<BookDetail>>() {
+        Call<BookDetail>  call = service.getAllInformation();
+        call.enqueue(new Callback<BookDetail>() {
             @Override
-            public void onResponse(@NonNull Call<List<BookDetail>> call, @NonNull Response<List<BookDetail>> response) {
+            public void onResponse(@NonNull Call<BookDetail> call, @NonNull Response<BookDetail> response) {
                 callback.onSuccess(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<BookDetail>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<BookDetail> call, @NonNull Throwable t) {
                 callback.onError(t.getMessage());
             }
         });
