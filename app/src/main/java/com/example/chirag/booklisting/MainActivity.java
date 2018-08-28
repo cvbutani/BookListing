@@ -26,10 +26,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.chirag.booklisting.model.BookDetail;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<BookInfo>> {
+public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<BookInfo>>, MainContract.View {
 
     private DataAdapter mAdapter;
 
@@ -84,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             mProgressBar.setVisibility(View.GONE);
             mEmptyTextView.setText(R.string.no_internet);
         }
+
+        MainPresenter presenter = new MainPresenter();
+        presenter.attachView(this);
     }
 
     @Override
@@ -125,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id =item.getItemId();
+        int id = item.getItemId();
         if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
@@ -135,4 +140,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     }
 
 
+    @Override
+    public void onResult(List<BookDetail> data) {
+        Log.i("GOT SOMETHING", "LET'S SEE" + data.get(0));
+    }
+
+    @Override
+    public void onError(String errorMessage) {
+
+    }
 }

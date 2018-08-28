@@ -1,5 +1,7 @@
 package com.example.chirag.booklisting.network;
 
+import android.util.Log;
+
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -10,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClientInstance {
 
     private static Retrofit mRetrofit;
-    private static final String BASE_URL = "https://www.googleapis.com/books/v1/volumes?maxResults=10&q=";
+    private static final String BASE_URL = "https://www.googleapis.com/books/v1/";
 
     public static Retrofit getRetrofitInstance() {
         if (mRetrofit == null) {
@@ -18,6 +20,7 @@ public class RetrofitClientInstance {
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
+            Log.i("RETROFIT", "STRING" + mRetrofit.toString());
         }
         return mRetrofit;
     }

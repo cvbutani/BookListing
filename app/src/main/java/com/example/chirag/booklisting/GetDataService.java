@@ -6,6 +6,8 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * BookListing
@@ -13,6 +15,6 @@ import retrofit2.http.GET;
  */
 public interface GetDataService {
 
-    @GET("android")
+    @GET("volumes?q=android")
     Call<List<BookDetail>> getAllInformation();
 }
