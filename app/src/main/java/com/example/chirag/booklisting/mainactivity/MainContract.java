@@ -1,8 +1,6 @@
-package com.example.chirag.booklisting;
+package com.example.chirag.booklisting.mainactivity;
 
 import com.example.chirag.booklisting.model.BookDetail;
-
-import java.util.List;
 
 /**
  * BookListing

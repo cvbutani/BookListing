@@ -1,4 +1,4 @@
-package com.example.chirag.booklisting;
+package com.example.chirag.booklisting.service;
 
 import com.example.chirag.booklisting.model.BookDetail;
 

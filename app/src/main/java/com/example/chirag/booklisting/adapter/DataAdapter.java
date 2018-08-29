@@ -1,4 +1,4 @@
-package com.example.chirag.booklisting;
+package com.example.chirag.booklisting.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.chirag.booklisting.R;
 import com.example.chirag.booklisting.model.BookDetail;
 import com.example.chirag.booklisting.model.Item;
 import com.squareup.picasso.Picasso;

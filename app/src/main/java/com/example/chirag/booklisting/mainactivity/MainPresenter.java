@@ -1,10 +1,8 @@
-package com.example.chirag.booklisting;
+package com.example.chirag.booklisting.mainactivity;
 
 import com.example.chirag.booklisting.data.DataManager;
 import com.example.chirag.booklisting.data.onTaskCompletion;
 import com.example.chirag.booklisting.model.BookDetail;
-
-import java.util.List;
 
 /**
  * BookListing

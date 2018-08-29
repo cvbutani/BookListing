@@ -1,6 +1,7 @@
-package com.example.chirag.booklisting;
+package com.example.chirag.booklisting.mainactivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,9 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.example.chirag.booklisting.adapter.DataAdapter;
+import com.example.chirag.booklisting.R;
 import com.example.chirag.booklisting.model.BookDetail;
 import com.example.chirag.booklisting.model.Item;
 
@@ -25,11 +28,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private View mProgressBar;
 
-    private TextView mEmptyTextView;
-
     MainPresenter mPresenter;
-
-    private static final String BOOK_URL = "https://www.googleapis.com/books/v1/volumes?";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +38,26 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ListView bookListView = findViewById(R.id.listView);
 
         mProgressBar = findViewById(R.id.loading_spinner);
-        mEmptyTextView = findViewById(R.id.emptyView);
 
-        bookListView.setEmptyView(mEmptyTextView);
         mAdapter = new DataAdapter(this, new ArrayList<Item>());
 
         bookListView.setAdapter(mAdapter);
 
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Item link = (Item) mAdapter.getItem(position);
+
+                Uri linkUri = Uri.parse(link.getVolumeInfo().getInfoLink());
+
+                Intent webIntent = new Intent(Intent.ACTION_VIEW, linkUri);
+                startActivity(webIntent);
+            }
+        });
+
         mPresenter = new MainPresenter();
         mPresenter.attachView(this);
+
     }
 
     @Override
@@ -81,11 +91,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onResult(BookDetail data) {
         mAdapter.addAll(data.getItems());
-
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onError(String errorMessage) {
-
+        Log.i(this.getClass().getSimpleName(), "ERROR GETTING BOOK DETAIL");
     }
 }

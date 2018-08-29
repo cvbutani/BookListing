@@ -2,11 +2,9 @@ package com.example.chirag.booklisting.data;
 
 import android.support.annotation.NonNull;
 
-import com.example.chirag.booklisting.GetDataService;
+import com.example.chirag.booklisting.service.GetDataService;
 import com.example.chirag.booklisting.model.BookDetail;
 import com.example.chirag.booklisting.network.RetrofitClientInstance;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

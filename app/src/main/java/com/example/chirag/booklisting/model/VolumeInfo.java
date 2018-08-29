@@ -84,6 +84,14 @@ public class VolumeInfo {
         return imageLinks;
     }
 
+    public String getInfoLink() {
+        return infoLink;
+    }
+
+    public void setInfoLink(String infoLink) {
+        this.infoLink = infoLink;
+    }
+
     public void setImageLinks(ImageLinks imageLinks) {
         this.imageLinks = imageLinks;
     }
