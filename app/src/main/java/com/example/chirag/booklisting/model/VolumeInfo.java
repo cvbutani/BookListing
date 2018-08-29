@@ -80,12 +80,12 @@ public class VolumeInfo {
         this.publisher = publisher;
     }
 
-    public String getInfoLink() {
-        return infoLink;
+    public ImageLinks getImageLinks() {
+        return imageLinks;
     }
 
-    public void setInfoLink(String infoLink) {
-        this.infoLink = infoLink;
+    public void setImageLinks(ImageLinks imageLinks) {
+        this.imageLinks = imageLinks;
     }
 
     public double getAverageRating() {

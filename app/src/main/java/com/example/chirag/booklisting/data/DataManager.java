@@ -20,7 +20,7 @@ public class DataManager implements DataContract {
     }
 
     @Override
-    public void getNewBatchOfData(onTaskCompletion callback) {
-        mDataUseCase.getData(callback);
+    public void getNewBatchOfData(String searchQuery, onTaskCompletion callback) {
+        mDataUseCase.getData(searchQuery, callback);
     }
 }

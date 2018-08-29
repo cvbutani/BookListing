@@ -16,7 +16,7 @@ public class MainContract {
     }
 
     interface Presenter {
-        void getData();
+        void getData(String searchQuery);
 
         void attachView(MainContract.View view);
     }

@@ -20,8 +20,8 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void getData() {
-        mDataManager.getNewBatchOfData(new onTaskCompletion() {
+    public void getData(String searchQuery) {
+        mDataManager.getNewBatchOfData(searchQuery, new onTaskCompletion() {
             @Override
             public void onSuccess(BookDetail data) {
                 mCallback.onResult(data);
@@ -37,6 +37,5 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void attachView(MainContract.View view) {
         mCallback = view;
-        getData();
     }
 }

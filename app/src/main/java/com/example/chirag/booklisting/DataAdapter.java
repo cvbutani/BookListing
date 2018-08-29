@@ -15,14 +15,20 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.chirag.booklisting.model.BookDetail;
+import com.example.chirag.booklisting.model.Item;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class
 DataAdapter extends ArrayAdapter {
 
-    public DataAdapter(@NonNull Context context, @NonNull ArrayList<BookInfo> objects) {
+    public DataAdapter(@NonNull Context context, List<Item> objects) {
         super(context, 0, objects);
     }
+
 
     @SuppressLint("SetTextI18n")
     @NonNull
@@ -34,7 +40,7 @@ DataAdapter extends ArrayAdapter {
             infoDisplay = LayoutInflater.from(getContext()).inflate(R.layout.activity_description, parent, false);
         }
 
-        BookInfo book = (BookInfo) getItem(position);
+        Item book = (Item) getItem(position);
 
         TextView bookName = infoDisplay.findViewById(R.id.book_title);
         TextView bookAuthor = infoDisplay.findViewById(R.id.book_author);
@@ -44,27 +50,27 @@ DataAdapter extends ArrayAdapter {
         ImageView bookImage = infoDisplay.findViewById(R.id.book_image);
         if (book != null) {
 
-            bookName.setText(book.getmBookName());
-            bookAuthor.setText(book.getmBookAuthor());
-            bookPublisher.setText(book.getmBookPublisher());
+            bookName.setText(book.getVolumeInfo().getTitle());
+            bookAuthor.setText(book.getVolumeInfo().getAuthors().get(0));
+            bookPublisher.setText(book.getVolumeInfo().getPublisher());
 
-            if (book.getmBookRating() == 0) {
+            if (book.getVolumeInfo().getAverageRating() == 0) {
                 bookRating.setVisibility(View.GONE);
             } else {
                 bookRating.setVisibility(View.VISIBLE);
-                bookRating.setRating((float) book.getmBookRating());
+                bookRating.setRating((float) book.getVolumeInfo().getAverageRating());
             }
 
             String filler;
-            if (book.getmBookPrice().equals("0")) {
+            if (book.getSaleInfo().getRetailPrice() == null || book.getSaleInfo().getRetailPrice().getAmount() == 0) {
                 filler = "Free";
             } else {
-                filler = "CAD $" + book.getmBookPrice();
+                filler = "CAD $" + book.getSaleInfo().getRetailPrice().getAmount();
             }
 
             bookPrice.setText(filler);
 
-            new ImageURL(bookImage).execute(book.getmBookImage());
+            Picasso.get().load(book.getVolumeInfo().getImageLinks().getSmallThumbnail()).into(bookImage);
         }
         return infoDisplay;
     }

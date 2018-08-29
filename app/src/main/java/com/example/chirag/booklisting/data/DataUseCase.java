@@ -20,10 +20,10 @@ public class DataUseCase {
     public DataUseCase() {
     }
 
-    void getData(final onTaskCompletion callback) {
+    void getData(String searchQuery, final onTaskCompletion callback) {
         GetDataService service= RetrofitClientInstance.getRetrofitInstance().create(GetDataService.class);
 
-        Call<BookDetail>  call = service.getAllInformation();
+        Call<BookDetail>  call = service.getAllInformation(searchQuery);
         call.enqueue(new Callback<BookDetail>() {
             @Override
             public void onResponse(@NonNull Call<BookDetail> call, @NonNull Response<BookDetail> response) {
